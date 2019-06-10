@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
 namespace PuttyAI_Shell
 {
@@ -23,6 +25,15 @@ namespace PuttyAI_Shell
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var ipy = Python.CreateRuntime();
+            dynamic test = ipy.UseFile("Python_Scripts/Test.py");
+            string myNewText = test.Simple();
+
+            MessageBox.Show(myNewText);
         }
     }
 }

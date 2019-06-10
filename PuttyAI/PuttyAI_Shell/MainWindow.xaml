@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="button" Content="Execute IronPython Example" HorizontalAlignment="Left" Margin="492,79,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" Height="39"/>
+
     </Grid>
 </Window>
