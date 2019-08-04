@@ -1,0 +1,4 @@
+[submodule "YaShiCSharp"]
+	path = YaShiCSharp
+	url = https://github.com/inventivejon/YaShiCSharp.git
+	branch = master
