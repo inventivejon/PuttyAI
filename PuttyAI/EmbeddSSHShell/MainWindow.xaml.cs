@@ -86,15 +86,36 @@ namespace EmbeddSSHShell
 
                 panel = new System.Windows.Forms.Panel();
 
+
                 panel.BackColor = System.Drawing.Color.Green;
 
                 winFormsHost.Child = panel;
+
+                /* Adds the event and the event handler for the method that will 
+               process the timer event to the timer. */
+                myTimer.Tick += new EventHandler(TimerEventProcessor);
+
+                // Sets the timer interval to 5 seconds.
+                myTimer.Interval = 1000;
+                myTimer.Start();
             }
             else
             {
                 
                 //SetParent(cmdProcess.MainWindowHandle, new IntPtr(0));
             }
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        private void MyPanel_SizeChanged(object sender, System.EventArgs e)
+        {
+            MoveWindow(cmdProcess.MainWindowHandle, 0, 0, panel.Width, panel.Height, true);
+
+            //SetParent(cmdProcess.MainWindowHandle, panel.Handle);
+            //ShowWindow(cmdProcess.MainWindowHandle, SW_MAXIMIZE);
+            //MakeExternalWindowBorderless(cmdProcess.MainWindowHandle);
         }
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
@@ -125,14 +146,36 @@ namespace EmbeddSSHShell
             SetWindowLongPtr(MainWindowHandle, GWL_STYLE, (IntPtr)Style);
             Style = GetWindowLongPtr(MainWindowHandle, GWL_EXSTYLE);
             SetWindowLongPtr(MainWindowHandle, GWL_EXSTYLE, (IntPtr)(Style | WS_EX_DLGMODALFRAME));
-            SetWindowPos(MainWindowHandle, panel.Handle, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
+            //SetWindowPos(MainWindowHandle, panel.Handle, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
+
+            MoveWindow(cmdProcess.MainWindowHandle, 0, 0, panel.Width, panel.Height, true);
+        }
+
+        private void Embedding()
+        {
+            SetParent(cmdProcess.MainWindowHandle, panel.Handle);
+            //ShowWindow(cmdProcess.MainWindowHandle, SW_MAXIMIZE);
+            MakeExternalWindowBorderless(cmdProcess.MainWindowHandle);
         }
 
         private void BtnSet_Click(object sender, RoutedEventArgs e)
         {
-            SetParent(cmdProcess.MainWindowHandle, panel.Handle);
-            ShowWindow(cmdProcess.MainWindowHandle, SW_MAXIMIZE);
-            MakeExternalWindowBorderless(cmdProcess.MainWindowHandle);
+            Embedding();
         }
+
+        static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+        
+        // This is the method to run when the timer is raised.
+        private void TimerEventProcessor(Object myObject,
+                                                EventArgs myEventArgs)
+        {
+            myTimer.Stop();
+            myTimer.Enabled = false;
+
+            Embedding();
+
+            panel.SizeChanged += new EventHandler(this.MyPanel_SizeChanged);
+        }
+
     }
 }
