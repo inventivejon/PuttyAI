@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmbeddSSHShell", "EmbeddSSH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCSharpSSHShell", "..\YaShiCSharp\SimpleCSharpSSHShell\SimpleCSharpSSHShell\SimpleCSharpSSHShell.csproj", "{45281F94-ED74-4D34-BA83-5216D72D25A4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Renci.SshNet.NETCore", "..\YaShiCSharp\SSH.NET.Core.Slim\src\Renci.SshNet.NETCore\Renci.SshNet.NETCore.csproj", "{51098B17-5739-4DD5-925B-D10A0E6DDAB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,14 @@ Global
 		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|x86.ActiveCfg = Release|Any CPU
 		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|x86.Build.0 = Release|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{51098B17-5739-4DD5-925B-D10A0E6DDAB3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
