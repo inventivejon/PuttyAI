@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PuttyAI_Backend", "PuttyAI\PuttyAI_Backend.csproj", "{35023C14-6BFF-4379-AB34-65FF6E14DDBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuttyAI_Shell", "PuttyAI_Shell\PuttyAI_Shell.csproj", "{DA394F75-C08C-4578-A120-B1CCF53E1E74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmbeddSSHShell", "EmbeddSSHShell\EmbeddSSHShell.csproj", "{CB5A6221-F4AA-4A76-B139-A0236E0A420F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmbeddSSHShell", "EmbeddSSHShell\EmbeddSSHShell.csproj", "{CB5A6221-F4AA-4A76-B139-A0236E0A420F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCSharpSSHShell", "..\YaShiCSharp\SimpleCSharpSSHShell\SimpleCSharpSSHShell\SimpleCSharpSSHShell.csproj", "{45281F94-ED74-4D34-BA83-5216D72D25A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{35023C14-6BFF-4379-AB34-65FF6E14DDBE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35023C14-6BFF-4379-AB34-65FF6E14DDBE}.Release|x86.ActiveCfg = Release|Any CPU
 		{35023C14-6BFF-4379-AB34-65FF6E14DDBE}.Release|x86.Build.0 = Release|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Debug|x86.Build.0 = Debug|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Release|x86.ActiveCfg = Release|Any CPU
-		{DA394F75-C08C-4578-A120-B1CCF53E1E74}.Release|x86.Build.0 = Release|Any CPU
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -41,6 +33,14 @@ Global
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Release|x86.ActiveCfg = Release|Any CPU
 		{CB5A6221-F4AA-4A76-B139-A0236E0A420F}.Release|x86.Build.0 = Release|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{45281F94-ED74-4D34-BA83-5216D72D25A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
