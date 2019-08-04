@@ -64,6 +64,9 @@ namespace EmbeddSSHShell
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
 
+        [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
+        public static extern IntPtr GetParent(IntPtr hWnd);
+
 
         System.Diagnostics.Process cmdProcess = null;
         System.Windows.Forms.Panel panel;
@@ -81,11 +84,9 @@ namespace EmbeddSSHShell
                 string exe = @"cmd.exe";
                 var processStartInfo = new System.Diagnostics.ProcessStartInfo(exe);
                 processStartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(exe);
-                processStartInfo.WindowStyle = ProcessWindowStyle.Minimized;
                 cmdProcess = Process.Start(processStartInfo);
 
                 panel = new System.Windows.Forms.Panel();
-
 
                 panel.BackColor = System.Drawing.Color.Green;
 
@@ -96,7 +97,7 @@ namespace EmbeddSSHShell
                 myTimer.Tick += new EventHandler(TimerEventProcessor);
 
                 // Sets the timer interval to 5 seconds.
-                myTimer.Interval = 1000;
+                myTimer.Interval = 300;
                 myTimer.Start();
             }
             else
@@ -151,11 +152,21 @@ namespace EmbeddSSHShell
             MoveWindow(cmdProcess.MainWindowHandle, 0, 0, panel.Width, panel.Height, true);
         }
 
-        private void Embedding()
+        private bool Embedding()
         {
-            SetParent(cmdProcess.MainWindowHandle, panel.Handle);
-            //ShowWindow(cmdProcess.MainWindowHandle, SW_MAXIMIZE);
-            MakeExternalWindowBorderless(cmdProcess.MainWindowHandle);
+            var result = SetParent(cmdProcess.MainWindowHandle, panel.Handle);
+
+            if (result != new IntPtr(0))
+            {
+                //ShowWindow(cmdProcess.MainWindowHandle, SW_MAXIMIZE);
+                MakeExternalWindowBorderless(cmdProcess.MainWindowHandle);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void BtnSet_Click(object sender, RoutedEventArgs e)
@@ -164,17 +175,32 @@ namespace EmbeddSSHShell
         }
 
         static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-        
+
+        private bool embeddedSuccessfully = false;
+
         // This is the method to run when the timer is raised.
         private void TimerEventProcessor(Object myObject,
                                                 EventArgs myEventArgs)
         {
-            myTimer.Stop();
-            myTimer.Enabled = false;
+            if (embeddedSuccessfully)
+            {
+                myTimer.Stop();
+                myTimer.Enabled = false;
 
-            Embedding();
-
-            panel.SizeChanged += new EventHandler(this.MyPanel_SizeChanged);
+                panel.SizeChanged += new EventHandler(this.MyPanel_SizeChanged);
+            }
+            else
+            {
+                if (Embedding())
+                {
+                    /* Successfully embedded console */
+                    embeddedSuccessfully = true;
+                }
+                else
+                {
+                    embeddedSuccessfully = false;
+                }
+            }
         }
 
     }
