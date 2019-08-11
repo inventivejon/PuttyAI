@@ -164,14 +164,16 @@ namespace EmbeddSSHShell
             }
         }
 
-        public EmbeddingPanel(WindowsFormsHost thisWPFHost)
+        WindowsFormsHost ThisWPFHost;
+
+        public EmbeddingPanel(TabItem thisTabItem)
         {
             if (cmdProcess == null)
             {
                 //Run console app
                 string exe = @".\..\..\..\..\..\YaShiCSharp\SimpleCSharpSSHShell\SimpleCSharpSSHShell\bin\Debug\netcoreapp3.0\SimpleCSharpSSHShell.exe";
                 var processStartInfo = new System.Diagnostics.ProcessStartInfo(exe);
-                processStartInfo.Arguments = @"ssh --hostname=""207.180.254.111"" --port=22 --user=""joni"" --keypath=""C:\Keys\K8s_MainNode\open_ssh_key.ppk""";
+                processStartInfo.Arguments = @"ssh --hostname=""__IP__"" --port=__PORT__ --user=""__USER__"" --keypath=""__KEYPATH__""";
                 processStartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(exe);
                 cmdProcess = Process.Start(processStartInfo);
 
@@ -179,9 +181,13 @@ namespace EmbeddSSHShell
 
                 panel.BackColor = System.Drawing.Color.Green;
 
-                //
+                ThisWPFHost = new WindowsFormsHost();
 
-                thisWPFHost.Child = panel;
+                thisTabItem.Content = ThisWPFHost;
+
+                ThisWPFHost.Child = panel;
+
+                
 
                 /* Adds the event and the event handler for the method that will 
                process the timer event to the timer. */
