@@ -141,12 +141,14 @@ namespace EmbeddSSHShell
 
         // This is the method to run when the timer is raised.
         private void TimerEventProcessor(Object myObject,
-                                                EventArgs myEventArgs)
+                                                EventArgs myEventArgs, int newIndexPosition, TabControl thisTabControl)
         {
             if (embeddedSuccessfully)
             {
                 myTimer.Stop();
                 myTimer.Enabled = false;
+
+                thisTabControl.SelectedIndex = newIndexPosition;
 
                 panel.SizeChanged += new EventHandler(this.MyPanel_SizeChanged);
             }
@@ -166,7 +168,7 @@ namespace EmbeddSSHShell
 
         WindowsFormsHost ThisWPFHost;
 
-        public EmbeddingPanel(TabItem thisTabItem)
+        public EmbeddingPanel(TabControl thisTabControl)
         {
             if (cmdProcess == null)
             {
@@ -183,6 +185,12 @@ namespace EmbeddSSHShell
 
                 ThisWPFHost = new WindowsFormsHost();
 
+                var thisTabItem = new TabItem();
+
+                thisTabItem.Header = "Shell";
+
+                var thisNewIndex = thisTabControl.Items.Add(thisTabItem);
+
                 thisTabItem.Content = ThisWPFHost;
 
                 ThisWPFHost.Child = panel;
@@ -191,7 +199,7 @@ namespace EmbeddSSHShell
 
                 /* Adds the event and the event handler for the method that will 
                process the timer event to the timer. */
-                myTimer.Tick += new EventHandler(TimerEventProcessor);
+                myTimer.Tick += new EventHandler((sender, e) => TimerEventProcessor(sender, e, thisNewIndex, thisTabControl));
 
                 // Sets the timer interval to 5 seconds.
                 myTimer.Interval = 300;
